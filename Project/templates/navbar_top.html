@@ -1,0 +1,40 @@
+{% load sekizai_tags static staticfiles %}
+
+{% if sub_menu_settings or sub_menu_chat %}
+    <ul id="navigator-top" class="navbar mt-0 dark bg-primary fixed-top no-padding nav-top">
+        {% if sub_menu_settings %}
+            <li class="nav-item">
+                <a href="{% url 'config' %}" class="footer-menu-item nav-link">
+                    <i class="material-icons vertical-mid">arrow_back</i>
+                </a>
+            </li>
+        {% endif %}
+        {% if sub_menu_chat %}
+            <li class="nav-item">
+                <a href="{% url 'chats' %}" class="footer-menu-item nav-link">
+                    <i class="material-icons vertical-mid">arrow_back</i>
+                </a>
+            </li>
+        {% endif %}
+        </li>
+    </ul>
+{% endif %}
+
+{% addtoblock 'js' %}
+
+    <script>
+
+        $(function () {
+
+            var menu = $("#navigator").find(".nav-item");
+            var icons = menu.find('a');
+
+            icons.click(function () {
+                icons.removeClass("active");
+                $(this).addClass("active");
+            });
+
+        });
+    </script>
+
+{% endaddtoblock %}
